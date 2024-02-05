@@ -1,0 +1,82 @@
+download node.js
+--------------------------------------------
+Go to Vite https://vitejs.dev/guide/
+	* Copy the "npm create vite@latest" and paste to the terminal in the vs code project (path where the .sln saved)
+	* Input the project name ("client")
+	* Select "React"
+	* Select a variant - "TypeScript + SWC				//SWC means Speedy Web Compiler
+	* Go to client directory and type npm install			//to get the dependencies that the project needs inside
+------------------------------------------------------------
+
+To run the React App
+	* Type "npm run dev"
+	* Copy the url that displayed in the terminal
+
+--------------------------------------------------------------
+
+To change the port
+	* Go to the vite.config.ts inside the "client" folder
+	* Inside the "export default defineConfig({...})" add 
+
+-------------------------------------------------------------------------
+
+To change the npm start							// Instead of using "npm run dev", we will use "npm start"
+	* Go to the package.json
+	* Inside the "scripts": {...} add "start": "vite"
+	* Run the React App by typing "nprm start"
+
+------------------------------------------------------------------------------
+
+Remove "assets" in the "/client/src/"
+
+-----------------------------------------------------------------------
+
+Remove "App.css" in the "/client/src/"					// Optional to remove if you want to use the default css created by vite
+
+------------------------------------------------------------------------
+
+Rename the "main.tsx" into "index.tsx" in the "/client/src/"		// main.tsx is created by vite
+Change ALSO the reference inside the index.html
+	*From "<script type="module" src="/src/main.tsx"></script>" 
+		to <script type="module" src="/src/index.tsx"></script>
+
+-------------------------------------------------------------------------------------------------
+
+Organize the files and folder in the client
+	* Create "app" folder inside the "src" folder			// App for the whole
+	* Create "features" inside the "src" folder			// Any specific features
+	* Create "layout" inside the "app" folder
+		* Move the "App.tsx", 
+		  "Index.css" to the "layout" folder
+		* Rename the "Index.css" to "Styles.css			// Any global styles are in here
+	* Create "models" folder inside the "app" folder		// Any types are in here
+		* Move "product.ts" to the "models" folder
+		
+--------------------------------------------------------------------------------------------
+
+Install Material UI
+	* Go to Material website / google "material ui"
+	* Click "Discover the Core libraries" >> "Material UI" >>
+		"Get Started" >> "Installation"
+	* Copy "npm install @mui/material @emotion/react @emotion/styled"
+	* Run in the terminal of "client" folder
+	* Copy "npm install @fontsource/roboto" and 
+		run in the terminal of "client" folder
+		* Then you can import it in your entry point like this:
+		  (Entry point is Index.tsx)
+		  import '@fontsource/roboto/300.css';
+		  import '@fontsource/roboto/400.css';
+		  import '@fontsource/roboto/500.css';
+		  import '@fontsource/roboto/700.css';
+	* Copy "npm install @mui/icons-material" and 
+		run in the terminal of "client" folder
+
+--------------------------------------------------------------------------------------------
+Install React Developer Tools in Chrome browser
+--------------------------------------------------------------------------------------
+Use app bar in Material UI (MUI Core)
+------------------------------------------------------------------------
+
+Install Axios
+	* Type "npm install axios" and run in the terminal of "client" folder
+	

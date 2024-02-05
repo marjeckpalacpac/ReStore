@@ -1,0 +1,67 @@
+First install vs code, .net sdk, node js, git-scm.com
+	- Type in CMD
+		* dotnet --info 	//information about the .net sdk installed
+		* node --version 	//version of the node installed
+		* npm --version 	//version of the nuget packages.; the npm is come along in the node that installed.
+		* dotnet -h 		//list of commands available inside the sdk; you can see the "new" command to create new .net project
+		* dotnet new list 	//list of different project type
+
+
+TO CREATE .NET PROJECT
+	- Type CMD
+		* 1. mkdir ReStore 						//make directory/folder
+		  2. cd ReStore							//change directory to ReStore
+		NOTE: to go to the specific folder type cd "[full path of the directory]"
+
+		* 3. dotnet new sln						//create solution file
+		* 4. dotnet new new webapi -o API				//API is the name of the project
+		NOTE: If you are using .NET 8 use this command:
+			* 4. dotnet new webapi -o API --use-controllers**********************
+		* 5. dotnet sln add API						//add the project into the solution
+		* 6. (Current directory of the project) code .			//to open the project inside visual studio code
+
+TO RUN/START THE .NET Project (API)
+	- Open the command/TERMINAL in the vscode
+		* (Go to the directory of the api project and type) cd API
+		* dotnet run
+		* (See the Now listening on: (current localhost)http://localhost:5059)
+	- Open browser and input this url : http://localhost:5059/swagger/	// this are the endpoints inside the project
+-------------------------------------------------------------------------------------------------------------------------------------
+ADD VS Code EXTENSIONS
+	- Go to Extension Tab and type the following below
+		* c# (By Microsoft)
+		* c# extensions (By JosKreativ)
+		* material icon theme
+		* nuget gallery (By pcisio) //to get easy to install nuget packages.
+		* sqlite (By alexcvzz)
+		* auto rename tag (By Jun Han)
+
+-------------------------------------------------------------------------------------------------------
+Exclude obj and bin folder in the display of Explorer
+	- Go to "Settings" -> File >> Preferences >> Settings and type in the Sear bar "exclude"
+	- In the "Files: Exclude" tab add the pattern:
+		* **/obj
+		* **/bin
+
+-------------------------------------------------------------------------------------
+Install dotnet ef nuget
+	- Go to the https://www.nuget.org/packages/dotnet-ef or search in the google "dotnet ef nuget".
+	- Copy the "dotnet tool install --global dotnet-ef --version 8.0.1" and paste in the terminal window of the vscode
+	- (To check the version type this in the terminal window) 
+		*dotnet tool list -g
+	- (You can check also by) dotnet ef
+--------------------------------------------------------------------------------------------
+Database Migration
+	Go to the directory of the API and type:
+		* dotnet ef migrations add InitialCreate -o Data/Migrations
+		* dotnet ef database update
+
+_______________________________________________________________________________________________
+To make the readonly field variable name have underscore (_)
+	Go to Extensions Tab (Ctrl+Shift+X) and search the c# extensions (By JosKreativ) that were installed
+		* Right click and select "Extension Settings"
+		* In the User tab, go to the "Csharpextensions: Private Member Prefix"
+			* Type _
+		* In the "Csharpextensions: Use This For Ctor Assignments
+			* Uncheck "Wheter or not a ctor assign..."
+		
