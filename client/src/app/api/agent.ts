@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = 'http://localhost:5001/api/';
 
@@ -12,6 +13,20 @@ const responseBody = (response: AxiosResponse) => response.data;
 axios.interceptors.response.use(response => {
     return response
 }, (error: AxiosError) => {
+    const { data, status } = error.response as AxiosResponse;
+    switch (status) {
+        case 400:
+            toast.error(data.title);
+            break;
+        case 401:
+            toast.error(data.title);
+            break;
+        case 500:
+            toast.error(data.title);
+            break;
+        default:
+            break;
+    }
     console.log('caught by interceptor');
     return Promise.reject(error.response);
 })

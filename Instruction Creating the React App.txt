@@ -79,4 +79,9 @@ Use app bar in Material UI (MUI Core)
 
 Install Axios
 	* Type "npm install axios" and run in the terminal of "client" folder
+
+------------------------------------------------------------------------
+Adding toast notifications
+	* Go to google and search "react toastify" or npmjs.com
+	* Type "npm install react-toastify" and run in the terminal of "client" folder 
 	
