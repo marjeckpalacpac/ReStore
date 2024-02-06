@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 axios.defaults.baseURL = 'http://localhost:5001/api/';
 
@@ -8,6 +8,13 @@ const responseBody = (response: AxiosResponse) => response.data;
 // function responseBodyFn(response: AxiosResponse) {
 //     return response.data
 // }
+
+axios.interceptors.response.use(response => {
+    return response
+}, (error: AxiosError) => {
+    console.log('caught by interceptor');
+    return Promise.reject(error.response);
+})
 
 const request = {
     get: (url: string) => axios.get(url).then(responseBody),
