@@ -1,0 +1,6 @@
+NOTE: launch.json is removed in .net 8. Below is old instruction for launch.json
+
+In order to run debugger, there are two modes.
+	Inside the "launch.json" there two configurations
+	1. Which is when application launch, it's going to run the application and attach a debugger to the running process
+	2. Which allows to attach a debugger to an already existing process
