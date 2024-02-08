@@ -84,4 +84,8 @@ Install Axios
 Adding toast notifications
 	* Go to google and search "react toastify" or npmjs.com
 	* Type "npm install react-toastify" and run in the terminal of "client" folder 
-	
+
+---------------------------------------------------------------------------------------------
+Add eslint extension in the react project. This extension will be the one to check the code of react/client app script
+	* Go to Extension tab.
+	* Search "eslint" and install
