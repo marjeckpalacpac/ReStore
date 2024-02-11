@@ -5,6 +5,7 @@ import { router } from "../router/Routes";
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500))
 
 axios.defaults.baseURL = 'http://localhost:5001/api/';
+axios.defaults.withCredentials = true; // our browser will receive the cookie and set the cookie inside the application storage
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -44,7 +45,7 @@ axios.interceptors.response.use(async response => {
     return Promise.reject(error.response);
 })
 
-const request = {
+const requests = {
     get: (url: string) => axios.get(url).then(responseBody),
     post: (url: string, body: object) => axios.post(url, body).then(responseBody),
     put: (url: string, body: object) => axios.put(url, body).then(responseBody),
@@ -57,21 +58,28 @@ const request = {
 // fetch('http://localhost:5001/api/products')
 
 const Catalog = {
-    list: () => request.get('products'), // list: () takes no parameter
-    details: (id: number) => request.get(`products/${id}`)
+    list: () => requests.get('products'), // list: () takes no parameter
+    details: (id: number) => requests.get(`products/${id}`)
 }
 
 const TestErrors = {
-    get400Error: () => request.get('buggy/bad-request'),
-    get401Error: () => request.get('buggy/unauthorised'),
-    get404Error: () => request.get('buggy/not-found'),
-    get500Error: () => request.get('buggy/server-error'),
-    getValidationError: () => request.get('buggy/validation-error'),
+    get400Error: () => requests.get('buggy/bad-request'),
+    get401Error: () => requests.get('buggy/unauthorised'),
+    get404Error: () => requests.get('buggy/not-found'),
+    get500Error: () => requests.get('buggy/server-error'),
+    getValidationError: () => requests.get('buggy/validation-error'),
+}
+
+const Basket ={
+    get: () => requests.get('basket'),
+    addItem: (productId: number, quantity = 1) => requests.post(`basket?productId=${productId}&quantity=${quantity}`, {}),
+    removeItem: (productId: number, quantity = 1) => requests.delete(`basket?productId=${productId}&${quantity}`),
 }
 
 const agent = {
     Catalog,
-    TestErrors
+    TestErrors,
+    Basket
 }
 
 export default agent;

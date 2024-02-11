@@ -89,3 +89,9 @@ Adding toast notifications
 Add eslint extension in the react project. This extension will be the one to check the code of react/client app script
 	* Go to Extension tab.
 	* Search "eslint" and install
+-----------------------------------------------------------------------------------------------------
+Install material ui lab
+	* Go to Material UI website and search "ButtonLoading API"
+	* Open the component tab in the left side bar
+	* Search the lab
+	* Copy the installation "npm install @mui/lab @mui/material" and run in the terminal of "client" folder 
