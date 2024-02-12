@@ -92,7 +92,7 @@ namespace API.Controllers
                 BuyerId = basket.BuyerId,
                 Items = basket.Items.Select(item => new BasketItemDto
                 {
-                    ProducId = item.ProductId,
+                    ProductId = item.ProductId,
                     Name = item.Product.Name,
                     Price = item.Product.Price,
                     PictureUrl = item.Product.PictureUrl,

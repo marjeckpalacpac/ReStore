@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors(opt => 
 {
-    opt.AllowAnyHeader().AllowAnyHeader().AllowCredentials().WithOrigins("http://localhost:3000");
+    opt.AllowAnyHeader().AllowCredentials().WithOrigins("http://localhost:3000").AllowAnyMethod();
     // The AllowCredentials enable the api receive the cookies from the client. The cookies were made from this api
 });
 
