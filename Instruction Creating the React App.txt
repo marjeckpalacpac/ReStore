@@ -95,3 +95,11 @@ Install material ui lab
 	* Open the component tab in the left side bar
 	* Search the lab
 	* Copy the installation "npm install @mui/lab @mui/material" and run in the terminal of "client" folder 
+
+-----------------------------------------------------------------------------------------------------------------------------
+Install Redux
+	* Run "npm install redux react-redux" in the terminal of "client" folder 
+
+------------------------------------------------------------------------------------------------------------------------
+Install Redux toolkit
+	* Run "npm install @reduxjs/toolkit" in the terminal of "client" folder 
