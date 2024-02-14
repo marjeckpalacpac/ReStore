@@ -33,18 +33,19 @@ export default function ProductDetails() {
     }
 
     function handleUpdateCart() {
+        if (!product) return;
         setSubmitting(true);
         if (!item || quantity > item.quantity) {
             const updatedQuantity = item ? quantity - item.quantity : quantity;
-            agent.Basket.addItem(product?.id!, updatedQuantity)
+            agent.Basket.addItem(product.id, updatedQuantity)
                 .then(basket => setBasket(basket))
                 .catch(error => console.log(error))
                 .finally(() => setSubmitting(false))
         }
         else {
             const updatedQuantity = item.quantity - quantity;
-            agent.Basket.removeItem(product?.id!, updatedQuantity)
-                .then(() => removeItem(product?.id!, updatedQuantity))
+            agent.Basket.removeItem(product.id, updatedQuantity)
+                .then(() => removeItem(product.id, updatedQuantity))
                 .catch(error => console.log(error))
                 .finally(() => setSubmitting(false));
         }
