@@ -103,3 +103,7 @@ Install Redux
 ------------------------------------------------------------------------------------------------------------------------
 Install Redux toolkit
 	* Run "npm install @reduxjs/toolkit" in the terminal of "client" folder 
+
+----------------------------------------------------------------------------------------------------------------
+Install Redux DevTools
+	* Go to google and search Redux DevTools extension for chrome
