@@ -1,11 +1,13 @@
 import { Typography, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Box, Grid,Button } from "@mui/material";
 import { Add, Delete, Remove } from "@mui/icons-material";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
 import BasketSummary from "./BasketSummary";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../app/store/configureStore";
+import { useDispatch } from "react-redux";
+import { removeItem, setBasket } from "./basketSlice";
 // import Button from "@mui/material/Button";
 
 
@@ -21,7 +23,10 @@ export default function BasketPage() {
     // }, [])
 
     // if (loading) return <LoadingCompoent message="Loading basket..." />
-    const { basket, setBasket, removeItem } = useStoreContext();
+
+    // const { basket, setBasket, removeItem } = useStoreContext();
+    const { basket} = useAppSelector(state => state.basket);
+    const dispatch = useDispatch();
     const [status, setStatus] = useState({
         loading: false,
         name: ''
@@ -31,7 +36,7 @@ export default function BasketPage() {
         setStatus({ loading: true, name });
         console.log("prod " + productId);
         agent.Basket.addItem(productId)
-            .then(basket => setBasket(basket))
+            .then(basket => dispatch(setBasket(basket)))
             .catch(error => console.log(error))
             .finally(() => setStatus({ loading: false, name: '' }))
     }
@@ -39,7 +44,7 @@ export default function BasketPage() {
     function handleRemoveItem(productId: number, quantity = 1, name: string) {
         setStatus({ loading: true, name });
         agent.Basket.removeItem(productId, quantity)
-            .then(() => removeItem(productId, quantity))
+            .then(() => dispatch(removeItem({productId, quantity})))
             .catch(error => console.log(error))
             .finally(() => setStatus({ loading: false, name: '' }))
     }
