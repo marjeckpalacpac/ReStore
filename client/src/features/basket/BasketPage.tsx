@@ -80,9 +80,9 @@ export default function BasketPage() {
                                 <TableCell align="center">
                                     <LoadingButton
                                         // loading={status.loading && status.name === 'rem' + item.productId}
-                                        loading={status.includes('pendingRemoveItem' + item.productId)}
+                                        loading={status === 'pendingRemoveItem' + item.productId + 'rem'}
                                         // onClick={() => handleRemoveItem(item.productId, 1, 'rem' + item.productId)}
-                                        onClick={() => dispatch(removeBasketItemAsync({productId: item.productId}))}
+                                        onClick={() => dispatch(removeBasketItemAsync({productId: item.productId, quantity: 1, name: 'rem'}))}
                                         color="error"
                                     >
                                         <Remove />
@@ -90,7 +90,7 @@ export default function BasketPage() {
                                     {item.quantity}
                                     <LoadingButton
                                         // loading={status.loading && status.name === 'add' + item.productId}
-                                        loading={status.includes('pendingAddItem' + item.productId)}
+                                        loading={status === 'pendingAddItem' + item.productId}
                                         // onClick={() => handleAddItem(item.productId, 'add' + item.productId)}
                                         onClick={() => dispatch(addBasketItemAsync({productId: item.productId}))}
                                         
@@ -103,9 +103,9 @@ export default function BasketPage() {
                                 <TableCell align="right">
                                     <LoadingButton
                                         // loading={status.loading && status.name === 'del' + item.productId}
-                                        loading={status.includes('pendingRemoveItem' + item.productId)}
+                                        loading={status === 'pendingRemoveItem' + item.productId + 'del'}
                                         // onClick={() => handleRemoveItem(item.productId, item.quantity, 'del' + item.productId)}
-                                        onClick={() => dispatch(removeBasketItemAsync({productId: item.productId, quantity: item.quantity}))}
+                                        onClick={() => dispatch(removeBasketItemAsync({productId: item.productId, quantity: item.quantity, name: 'del'}))}
                                         color="error">
                                         <Delete />
                                     </LoadingButton>
