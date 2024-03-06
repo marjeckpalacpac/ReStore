@@ -10,10 +10,10 @@ import { router } from './app/router/Routes.tsx';
 // import { StoreProvider } from './app/context/StoreContext.tsx';
 import { Provider } from 'react-redux';
 import { store } from './app/store/configureStore.ts';
-import { fetchProductsAsync } from './features/catalog/catalogSlice.ts';
+// import { fetchProductsAsync } from './features/catalog/catalogSlice.ts';
 
 // console.log(store.getState())
-store.dispatch(fetchProductsAsync());
+// store.dispatch(fetchProductsAsync());
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
