@@ -11,26 +11,30 @@ import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 // import { removeItem, setBasket } from "../basket/basketSlice";
 // import { addBasketItemAsync, removeBasketItemAsync, setBasket } from "../basket/basketSlice";
 import { addBasketItemAsync, removeBasketItemAsync } from "../basket/basketSlice";
+import { fetchProductAsync, productSelectors } from "./catalogSlice";
 
 export default function ProductDetails() {
     // const { basket, setBasket, removeItem } = useStoreContext();
     const { basket, status } = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
     const { id } = useParams<{ id: string }>();
-    const [product, setProduct] = useState<Product | null>(null);
-    const [loading, setLoading] = useState(true);
+    // const [product, setProduct] = useState<Product | null>(null);
+    const product = useAppSelector(state => productSelectors.selectById(state, parseInt(id!)));
+    // const [loading, setLoading] = useState(true);
+    const {status: productStatus} = useAppSelector(state => state.catalog);
     const [quantity, setQuantity] = useState(0);
     // const [submitting, setSubmitting] = useState(false)
     const item = basket?.items.find(i => i.productId === product?.id);
 
     useEffect(() => {
         if (item) setQuantity(item.quantity);
-        id && agent.Catalog.details(parseInt(id))
-            // axios.get(`http://localhost:5001/api/products/${id}`)
-            .then(response => setProduct(response))
-            .catch(error => console.log(error))
-            .finally(() => setLoading(false))
-    }, [id, item])
+        // id && agent.Catalog.details(parseInt(id))
+        //     // axios.get(`http://localhost:5001/api/products/${id}`)
+        //     .then(response => setProduct(response))
+        //     .catch(error => console.log(error))
+        //     .finally(() => setLoading(false))
+        if (!product && id) dispatch(fetchProductAsync(parseInt(id)))
+    }, [id, item, dispatch, product])
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
         if (parseInt(event.currentTarget.value) >= 0) {
@@ -59,7 +63,8 @@ export default function ProductDetails() {
         }
     }
 
-    if (loading) return <LoadingCompoent message='Loading product...' />
+    // if (loading) return <LoadingCompoent message='Loading product...' />
+    if (productStatus.includes('pending')) return <LoadingCompoent message='Loading product...' />
 
     if (!product) return <NotFound />
 

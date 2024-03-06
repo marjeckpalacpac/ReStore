@@ -16,11 +16,11 @@ import { store } from './app/store/configureStore.ts';
 // store.dispatch(fetchProductsAsync());
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <>
     {/* <StoreProvider> */}
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>
     {/* </StoreProvider> */}
-  </React.StrictMode>,
+  </>,
 )
