@@ -15,22 +15,24 @@ const initialState: BasketState = {
 
 export const addBasketItemAsync = createAsyncThunk<Basket, {productId: number, quantity?: number}>(
     'basket/addBasketItemAsync', 
-    async ({productId, quantity = 1}) => {
+    async ({productId, quantity = 1}, thunkAPI) => {
         try {
             return await agent.Basket.addItem(productId, quantity);
-        } catch (error) {
-           console.log(error); 
+        } catch (error: any) {
+        //    console.log(error); 
+            return thunkAPI.rejectWithValue({error: error.data})
         }
     }
 )
 
 export const removeBasketItemAsync = createAsyncThunk<void, {productId: number, quantity: number, name?: string}>(
     'basket/removeBasketItemAsync',
-    async ({productId, quantity = 1}) => {
+    async ({productId, quantity = 1}, thunkAPI) => {
         try {
             await agent.Basket.removeItem(productId, quantity);
-        } catch (error) {
+        } catch (error: any) {
             // console.log(error);
+            return thunkAPI.rejectWithValue({error: error.data})
         }
     }
 )
@@ -61,8 +63,9 @@ export const basketSlice = createSlice({
             state.basket = action.payload;
             state.status = 'idle'; 
         });
-        builder.addCase(addBasketItemAsync.rejected, (state) => {
+        builder.addCase(addBasketItemAsync.rejected, (state, action) => {
             state.status = 'idle';
+            console.log(action.payload);
         });
         builder.addCase(removeBasketItemAsync.pending, (state, action) => {
             state.status = 'pendingRemoveItem' + action.meta.arg.productId + action.meta.arg.name;
@@ -76,8 +79,9 @@ export const basketSlice = createSlice({
                 state.basket.items.splice(itemIndex, 1);
             state.status = 'idle';
         });
-        builder.addCase(removeBasketItemAsync.rejected, (state) => {
+        builder.addCase(removeBasketItemAsync.rejected, (state, action) => {
             state.status = 'idle'
+            console.log(action.payload);
         })
     })
 })
