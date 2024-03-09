@@ -59,7 +59,8 @@ const requests = {
 
 const Catalog = {
     list: () => requests.get('products'), // list: () takes no parameter
-    details: (id: number) => requests.get(`products/${id}`)
+    details: (id: number) => requests.get(`products/${id}`),
+    fetchFilters: () => requests.get('products/filters')
 }
 
 const TestErrors = {
