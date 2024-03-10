@@ -46,7 +46,7 @@ axios.interceptors.response.use(async response => {
 })
 
 const requests = {
-    get: (url: string) => axios.get(url).then(responseBody),
+    get: (url: string, params?: URLSearchParams) => axios.get(url, {params}).then(responseBody),
     post: (url: string, body: object) => axios.post(url, body).then(responseBody),
     put: (url: string, body: object) => axios.put(url, body).then(responseBody),
     delete: (url: string) => axios.delete(url).then(responseBody),
@@ -58,7 +58,7 @@ const requests = {
 // fetch('http://localhost:5001/api/products')
 
 const Catalog = {
-    list: () => requests.get('products'), // list: () takes no parameter
+    list: (params: URLSearchParams) => requests.get('products', params), // list: () takes no parameter
     details: (id: number) => requests.get(`products/${id}`),
     fetchFilters: () => requests.get('products/filters')
 }
