@@ -107,3 +107,6 @@ Install Redux toolkit
 ----------------------------------------------------------------------------------------------------------------
 Install Redux DevTools
 	* Go to google and search Redux DevTools extension for chrome
+----------------------------------------------------------------------------------------------------
+Install react-hook-form from https://react-hook-form.com
+	* npm install react-hook-form
