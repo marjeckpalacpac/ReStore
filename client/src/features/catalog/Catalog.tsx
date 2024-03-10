@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import ProductList from "./ProductList";
 import { useEffect } from "react";
 import { fetchProductsAsync, productSelectors, fetchFilters } from "./catalogSlice";
-import { Grid, Paper, TextField, FormControl, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, Typography, Pagination, Box } from "@mui/material";
+import { Grid, Paper, FormControl, RadioGroup, FormControlLabel, Radio, FormGroup, Checkbox, Typography, Pagination, Box } from "@mui/material";
+import ProductSearch from "./ProductSearch";
 
 
 
@@ -43,11 +44,7 @@ export default function Catalog() {
         <Grid container spacing={4}>
             <Grid item xs={3}>
                 <Paper sx={{ mb: 2 }}>
-                    <TextField
-                        label='Search products'
-                        variant='outlined'
-                        fullWidth
-                    />
+                    <ProductSearch />
                 </Paper>
                 <Paper sx={{ mb: 2, p: 2 }}>
                     <FormControl>
