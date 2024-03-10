@@ -64,4 +64,6 @@ To make the readonly field variable name have underscore (_)
 			* Type _
 		* In the "Csharpextensions: Use This For Ctor Assignments
 			* Uncheck "Wheter or not a ctor assign..."
-		
+----------------------------------------------------------------------------------------------------------
+Install Microsoft.AspNetCore.Authentication.JwtBearer in the nuget package gallery
+Install Microsoft.AspNetCore.Identity.EntityFrameworkCore in the nuget package gallery // this will be the one to create tables and migration to give the everything need by Identity
